@@ -11,7 +11,7 @@ figure; hold on;
 %               2D plot, using the option 'k+' for the positive
 %               examples and 'ko' for the negative examples.
 %
-% fin index of positive and negative examples
+% find index of positive and negative examples
 pos_y_index = find(y==1);
 neg_y_index = find(y==0);
 
