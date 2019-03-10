@@ -20,11 +20,12 @@ p = zeros(size(X, 1), 1);
 %       information see 'help max'. If your examples are in rows, then, you
 %       can use max(A, [], 2) to obtain the max for each row.
 %
+% add a columna to X with one
+X = [ones(m, 1) X];
 
-
-
-
-
+hidden_layer = [ones(m, 1) sigmoid(X*Theta1')];
+output_layer = sigmoid(hidden_layer*Theta2');
+[~, p] = max(output_layer, [], 2);
 
 
 
