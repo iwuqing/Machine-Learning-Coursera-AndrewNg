@@ -61,30 +61,39 @@ Theta2_grad = zeros(size(Theta2));
 %               the regularization separately and then add them to Theta1_grad
 %               and Theta2_grad from Part 2.
 %
+% add one column that always equal to 1 into X
+X = [ones(m,1), X]; # 5000*401
+z2 = X * Theta1'; # 5000*25
+a2 = [ones(m, 1), sigmoid(z2)]; # 5000*26
+z3 = a2 * Theta2'; # 5000*10
+a3 = sigmoid(z3); # 5000*10
+% convert y vcetor to y matrix
+temp_y = zeros(m, num_labels);
+for i = 1:m
+    temp_y(i, y(i)) = 1;
+end
+% calculate regularized cost J
+for i = 1:num_labels
+    J = -(1/m).*(temp_y(:, i)'*log(a3(:, i))+(1-temp_y(:, i))'*log(1-a3(:, i))) + J;
+end
+% declare temporary theta1 and theta2 for regularization
+Theta1_t = Theta1(:, 2:end); # 25*400
+Theta2_t = Theta2(:, 2:end); # 10*25
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+J = J + (lambda/(2*m))*(sum((Theta1_t.^2)(:)) + sum((Theta2_t.^2)(:)));
 % -------------------------------------------------------------
 
 % =========================================================================
-
 % Unroll gradients
+delta_2 = a3 - temp_y; # 5000*10
+delta_1 = delta_2 * Theta2_t .* sigmoidGradient(z2); # 5000*25
+
+Theta1_t1 = Theta1; # 25*401
+Theta1_t1(:, 1) = 0;
+Theta2_t2 = Theta2; # 10*26
+Theta1_t2(:, 1) = 0;
+Theta2_grad = (Theta2_grad + delta_2'*a2 + lambda*Theta2_t2)/m; # 10*26
+Theta1_grad = (Theta1_grad + delta_1'*X + lambda*Theta1_t1)/m; # 25*401
 grad = [Theta1_grad(:) ; Theta2_grad(:)];
 
 
