@@ -4,4 +4,4 @@ It's divided into two versions
 - Jupyter Notebook
 
 # Notes
-http://iwuqing.info/label?label=Machine%20Learning-Andrew%20Ng
+[click here:)](http://iwuqing.info/label?label=Machine%20Learning-Andrew%20Ng)
