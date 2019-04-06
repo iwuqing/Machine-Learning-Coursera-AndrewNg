@@ -50,15 +50,15 @@ error_val   = zeros(m, 1);
 %           
 %       end
 %
-
+theta = [];
 % ---------------------- Sample Solution ----------------------
-
-
-
-
-
-
-
+for i = 1:m
+    % train paratemers
+    theta = trainLinearReg(X(1:i, :), y(1:i), lambda);
+    % compute cost J corresponding to i that the number of training examples
+    [error_train(i), ~] = linearRegCostFunction(X(1:i, :), y(1:i), theta, 0);
+    [error_val(i), ~] = linearRegCostFunction(Xval, yval, theta, 0);
+end
 % -------------------------------------------------------------
 
 % =========================================================================

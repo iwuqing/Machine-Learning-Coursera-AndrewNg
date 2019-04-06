@@ -151,7 +151,6 @@ X_poly_val = [ones(size(X_poly_val, 1), 1), X_poly_val];           % Add Ones
 
 fprintf('Normalized Training Example 1:\n');
 fprintf('  %f  \n', X_poly(1, :));
-
 fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
 
@@ -163,10 +162,10 @@ pause;
 %  lambda = 0. You should try running the code with different values of
 %  lambda to see how the fit and learning curve change.
 %
-
 lambda = 0;
+size(X_poly)
+size(y)
 [theta] = trainLinearReg(X_poly, y, lambda);
-
 % Plot training data and fit
 figure(1);
 plot(X, y, 'rx', 'MarkerSize', 10, 'LineWidth', 1.5);
